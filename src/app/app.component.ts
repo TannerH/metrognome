@@ -1,14 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {ButtonModule} from 'primeng/button';
+import {SliderModule} from 'primeng/slider';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    ButtonModule,
+    SliderModule
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: []
 })
 export class AppComponent implements OnInit {
 
@@ -21,7 +25,7 @@ export class AppComponent implements OnInit {
     if (this.audio.error) {
       console.error("Error loading audio file.");
     }
-    this.start();
+    // this.start();
   }
 
 

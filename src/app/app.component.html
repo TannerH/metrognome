@@ -1,4 +1,14 @@
-<h1>MetroGnome</h1>
-<input type="number" [(ngModel)]="bpm" (ngModelChange)="setBPM($event)">
-<button (click)="start()">Play</button>
-<button (click)="stop()">Stop</button>
+<div class="flex justify-center items-center h-screen">
+  <div id="control-stack" class="flex flex-col gap-10">
+    <div class="flex flex-row gap-8 items-center justify-between">
+      <p-slider [(ngModel)]="bpm"
+                (onChange)="setBPM($event.value ?? bpm)" orientation="vertical" styleClass="h-56"/>
+      <div class="text-9xl">{{ bpm }}</div>
+    </div>
+
+    <div class="flex flex-row gap-4 justify-between">
+      <p-button severity="success" label="Play" (click)="start()"></p-button>
+      <p-button severity="danger" label="Stop" (click)="stop()"></p-button>
+    </div>
+  </div>
+</div>
