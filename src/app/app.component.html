@@ -2,7 +2,14 @@
   <div id="control-stack" class="flex flex-col gap-10">
     <div class="flex flex-row gap-8 items-center justify-between">
       <p-slider [(ngModel)]="bpm"
-                (onChange)="setBPM($event.value ?? bpm)" orientation="vertical" styleClass="h-56"/>
+                (onSlideEnd)="setBPM($event.value ?? bpm)"
+                orientation="vertical"
+                styleClass="h-80"
+                min="60"
+                max="210"
+                animate="true"
+
+      />
       <div class="text-9xl">{{ bpm }}</div>
     </div>
 
