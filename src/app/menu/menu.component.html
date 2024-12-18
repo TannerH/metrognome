@@ -1,0 +1,25 @@
+<div class="">
+  <p-menu [model]="menuItems" styleClass="h-screen">
+    <ng-template #start>
+        <span class="inline-flex items-center gap-1 px-2 py-2">
+          <p-image src="images/gnome.png" alt="MetroGNOME" width="32" height="32"/>
+            <span class="text-xl font-semibold">
+                Metro<span class="text-primary">GNOME</span>
+            </span>
+        </span>
+    </ng-template>
+
+    <ng-template #submenuheader let-item>
+      <span class="text-primary font-bold">{{ item.label }}</span>
+    </ng-template>
+
+    <ng-template #item let-item>
+      <a pRipple class="flex items-center p-menu-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-template>
+    <!--    <ng-template #end>-->
+    <!--    </ng-template>-->
+  </p-menu>
+</div>
