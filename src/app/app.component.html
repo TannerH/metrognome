@@ -1,4 +1,4 @@
 <h1>MetroGnome</h1>
-<input type="number" [(ngModel)]="bpm">
+<input type="number" [(ngModel)]="bpm" (ngModelChange)="setBPM($event)">
 <button (click)="start()">Play</button>
 <button (click)="stop()">Stop</button>
