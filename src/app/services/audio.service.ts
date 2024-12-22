@@ -12,6 +12,7 @@ type Sound = {
 export class AudioService {
 
   private readonly BASE_PATH = 'audio/metronomes/';
+
   private readonly SOUND1: Sound = {
     name: 'Percussion',
     hiPath: 'Perc_Can_hi.wav',
@@ -40,10 +41,12 @@ export class AudioService {
   }
 
   setClap() {
+    console.log('setClap');
     this.changeSound(this.SOUND2);
   }
 
   setPercussion() {
+    console.log('setPercussion');
     this.changeSound(this.SOUND1);
   }
 
