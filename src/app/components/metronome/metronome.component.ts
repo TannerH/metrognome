@@ -17,16 +17,16 @@ import {ToggleButton} from 'primeng/togglebutton';
   styleUrls: [],
 })
 export class MetronomeComponent {
-
-  private audio: HTMLAudioElement;
+  
   private intervalId: number | null = null;
 
-  bpm = 90;
-  isPlaying = false;
+  bpm: number = 90;
+  isPlaying: boolean = false;
 
+  private readonly BASE_PATH = 'audio/metronomes/';
 
   constructor() {
-    this.audio = new Audio('audio/Perc_Can_hi.wav');
+    this.audio = new Audio(this.BASE_PATH + 'Perc_Can_hi.wav');
   }
 
   start(): void {
@@ -44,12 +44,16 @@ export class MetronomeComponent {
     if (this.intervalId == null) {
       return;
     }
+    this.isPlaying = false;
 
     clearInterval(this.intervalId);
     this.intervalId = null;
   }
 
   setBPM(newBPM: number): void {
+    if (this.bpm === newBPM) {
+      return;
+    }
     this.bpm = newBPM;
     if (this.intervalId !== null) {
       this.stop();
@@ -59,8 +63,10 @@ export class MetronomeComponent {
 
   toggle() {
     if (this.isPlaying) {
+      console.log("Pausing...");
       this.stop();
     } else {
+      console.log("Starting...");
       this.start();
     }
   }

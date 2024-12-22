@@ -13,12 +13,11 @@
   </div>
 
   <p-toggleButton [(ngModel)]="isPlaying"
-                  onLabel="Play"
-                  offLabel="Pause"
-                  onIcon="pi pi-play"
-                  offIcon="pi pi-pause"
-                  (onChange)="toggle()"
+                  onLabel="Pause"
+                  onIcon="pi pi-pause"
+                  offLabel="Play"
+                  offIcon="pi pi-play"
+                  (ngModelChange)="toggle()"
                   size="large"
                   styleClass="min-w-24"/>
-
 </div>
