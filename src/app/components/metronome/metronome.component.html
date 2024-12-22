@@ -17,7 +17,9 @@
                   onIcon="pi pi-pause"
                   offLabel="Play"
                   offIcon="pi pi-play"
-                  (ngModelChange)="toggle()"
                   size="large"
-                  styleClass="min-w-24"/>
+                  styleClass="min-w-24"
+                  (onChange)="onToggle()"
+  />
+  <span> Is Playing?  {{ this.isPlaying }}</span>
 </div>

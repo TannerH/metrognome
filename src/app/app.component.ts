@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {ButtonModule} from 'primeng/button';
 import {SliderModule} from 'primeng/slider';
-import {MetronomeComponent} from './metronome/metronome.component';
-import {MenuComponent} from './menu/menu.component';
+import {MetronomeComponent} from './components/metronome/metronome.component';
+import {MenuComponent} from './components/menu/menu.component';
 
 @Component({
   selector: 'app-root',

@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ButtonModule} from 'primeng/button';
 import {SliderModule} from 'primeng/slider';
 import {FormsModule} from '@angular/forms';
 import {ToggleButton} from 'primeng/togglebutton';
+import {AudioService} from '../../services/audio.service';
 
 @Component({
   selector: 'app-metronome',
@@ -17,35 +18,33 @@ import {ToggleButton} from 'primeng/togglebutton';
   styleUrls: [],
 })
 export class MetronomeComponent {
-  
   private intervalId: number | null = null;
 
   bpm: number = 90;
-  isPlaying: boolean = false;
-
-  private readonly BASE_PATH = 'audio/metronomes/';
-
-  constructor() {
-    this.audio = new Audio(this.BASE_PATH + 'Perc_Can_hi.wav');
-  }
+  isPlaying = false;
+  audioService: AudioService = inject(AudioService);
 
   start(): void {
+    if (this.intervalId !== null) {
+      console.log("Trying to start when already playing.");
+      return;
+    }
     this.isPlaying = true;
     const intervalMs = 60000 / this.bpm;
 
     // @ts-ignore
     this.intervalId = setInterval(() => {
-      this.audio.currentTime = 0;
-      this.audio.play().catch((error) => console.error("Error playing sound:", error));
+      this.audioService.reset();
+      this.audioService.play();
     }, intervalMs);
   }
 
   stop(): void {
     if (this.intervalId == null) {
+      console.log("Trying to stop when not playing.");
       return;
     }
     this.isPlaying = false;
-
     clearInterval(this.intervalId);
     this.intervalId = null;
   }
@@ -61,13 +60,13 @@ export class MetronomeComponent {
     }
   }
 
-  toggle() {
+  onToggle() {
+    // isPlaying is already updated by the UI element so checking the post updated state
+    // could probably change to reactive forms to make this cleaner
     if (this.isPlaying) {
-      console.log("Pausing...");
-      this.stop();
-    } else {
-      console.log("Starting...");
       this.start();
+    } else {
+      this.stop();
     }
   }
 }
