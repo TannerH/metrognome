@@ -1,0 +1,27 @@
+name: MetroGnome Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  angular:
+    name: Angular Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 20 ]
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js $
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: run bun install
+
+      - name: Build
+        run: bun run build
